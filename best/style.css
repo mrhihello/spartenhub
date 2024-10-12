@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 100vw;
+    height: 70vh;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+}
+
+/* Slide animation for carousel */
+
+.carousel-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.carousel-item.active {
+    display: block;
+    opacity: 1; /* Smooth fade-in for active slide */
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+}
+
+.dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1;
+}
+
+/* Text Animation: Fade-in and Slide-in */
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease-in-out;
+}
+
+.carousel-item.active .carousel-caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.carousel-caption .brand-name, 
+.carousel-caption .heading, 
+.carousel-caption .subheading, 
+.carousel-caption .text-content {
+    animation: scaleIn 1s ease forwards; /* Scale-in effect */
+}
+
+
+/* View More Button with Pulse Effect */
+/* New View More Button Styling */
+.view-more-btn {
+    padding: 12px 30px;
+    border: none;
+    background: linear-gradient(45deg, #f39c12, #e67e22); /* Gradient background */
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30px; /* Rounded corners */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Add shadow */
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Hover effect for View More button */
+.view-more-btn:hover {
+    background: linear-gradient(45deg, #e67e22, #f39c12); /* Reverse gradient on hover */
+    transform: translateY(-3px); /* Lift button on hover */
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+    color: #fff; /* Keep text color white */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.view-more-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: gold;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px; /* Adds margin at the top to separate button from text */
+}
+
+/* Adding double space between text and button */
+.carousel-caption .brand-name, 
+.carousel-caption .heading, 
+.carousel-caption .subheading, 
+.carousel-caption .text-content {
+    margin-bottom: 15px; /* Increased space between text and button */
+}
+
+.view-more-btn:hover {
+    animation: pulse 0.6s infinite;
+    background-color: orange;
+}
+
+/* Carousel Controls */
+.carousel-control-prev, .carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    background-color: gold;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.carousel-control-prev {
+    left: 10px;
+}
+
+.carousel-control-next {
+    right: 10px;
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    background-color: orange;
+}
+  

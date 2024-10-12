@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%; /* Reduced width by 10% from both left and right */
+    margin: 0 auto; /* Center the container */
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .product-row {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 20px 0;
+  }
+  
+  .product {
+    width: 30%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .product img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .product-info {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .product-info h3 {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .product-info .price {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .product-details {
+    padding: 10px;
+    background-color: #f4f4f4;
+    display: none;
+  }
+  
+  .product-details p {
+    margin: 5px 0;
+  }
+  
+  .add-to-cart {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #2ecc71;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  
+  .add-to-cart:hover {
+    transform: scale(1.1);
+  }
+  
+  .product:hover {
+    transform: scale(1.05);
+  }
+  
+  .product:hover .product-details {
+    display: block;
+  }
+  
+  .product-details p strong {
+    font-weight: bold;
+  }
+  
+  .product .price {
+    font-size: 16px;
+  }
+  
+  .product .product-details p {
+    font-size: 14px;
+  }
+  
+  .product .product-details button {
+    background-color: #3498db;
+  }
+  
+  @media (max-width: 768px) {
+    .product {
+      width: 45%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .product {
+      width: 90%;
+    }
+  }
+  

@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparten Hub</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="new.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .category {
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #fff;
+            transition: transform 0.3s ease;
+        }
+        .category:hover {
+            transform: scale(1.05);
+        }
+        .category img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .category:hover img {
+            transform: scale(1.1);
+        }
+        .category h3 {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 10px;
+            font-size: 18px;
+            text-transform: uppercase;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .category h3:hover {
+            transform: scale(1.2);
+            color: #ff6600;
+        }
+        .subheadings {
+            padding: 10px;
+            text-align: left;
+        }
+        .subheadings a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            margin: 5px 0;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .subheadings a:hover {
+            transform: scale(1.1);
+            color: #ff6600;
+        }
+
+        /* Navigation Zoom Effect */
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease; /* Smooth transition for zoom effect */
+        }
+
+        .nav-links a:hover {
+            transform: scale(1.1); /* Magic zoom effect on hover */
+        }
+
+        /* Header Styles */
+        .header-container {
+            display: flex;
+            align-items: center;
+            background-color: #101828;
+            padding: 15px;
+            color: white;
+        }
+
+        .website-name {
+            margin: 0;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .website-name:hover {
+            transform: scale(1.1); /* Zoom effect on website name */
+        }
+
+        .search-bar {
+            margin-left: 20px;
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+        }
+
+        .auth-buttons {
+            margin-left: auto;
+        }
+
+        .login-register {
+            margin-left: 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #444CE7;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease; /* Magic zoom effect */
+        }
+
+        .login-register:hover {
+            transform: scale(1.1); /* Zoom effect on hover */
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            padding: 10px 20px;
+        }
+
+        .browse-categories {
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .three-dots {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            margin: 0;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        /* Main Styles */
+        main {
+            padding: 20px;
+        }
+
+        /* Product Image and Details Styles */
+        .image-row-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        /* First Image (50% width) */
+        .first-image-container {
+            flex: 0 0 50%; /* Takes 50% of the width */
+            position: relative;
+        }
+
+        .first-image {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Oxo Product Images (25% width each) */
+        .oxo-product-container {
+            display: flex;
+            flex-direction: column;
+            flex: 0 0 25%; /* Takes 25% of the width */
+            height: 100%; /* Ensure equal height */
+        }
+
+        .oxo-image {
+            flex: 1; /* Each image takes equal height */
+            position: relative;
+            margin-bottom: 10px; /* Space between images */
+        }
+
+        .oxo-top,
+        .oxo-bottom {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Maintain aspect ratio */
+        }
+
+        /* Last Product (25% width) */
+        .last-product-container {
+            flex: 0 0 25%; /* Takes 25% of the width */
+            position: relative;
+        }
+
+        .last-product {
+            width: 100%;
+            height: auto; /* Ensure it scales correctly */
+            object-fit: cover; /* Maintain aspect ratio */
+        }
+
+        /* Product Info */
+        .product-info {
+            position: absolute; /* Position text on top of the image */
+            top: 10px;
+            left: 10px;
+            color: black;
+            padding: 10px;
+            z-index: 1; /* Ensure text appears above the image */
+        }
+
+        .view-more {
+            color: red;
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .view-more:hover {
+            transform: scale(1.2); /* Zoom effect on hover */
+        }
+
+        .product-title {
+            font-size: 20px;
+            color: black;
+            margin: 0;
+        }
+
+        /* 4 Images in a Row (Grid layout) */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 images per row */
+            gap: 20px; /* Space between images */
+            margin-top: 20px; /* Space above the grid */
+        }
+
+        .image-grid img {
+            width: 100%; /* Full width */
+            height: auto;
+            transition: transform 0.3s ease; /* Zoom effect */
+        }
+
+        .image-grid img:hover {
+            transform: scale(1.1); /* Zoom effect */
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #101828;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .menu,
+        .categories,
+        .contact {
+            width: 30%;
+        }
+
+        .menu h3,
+        .categories h3,
+        .contact h3 {
+            margin: 0 0 10px 0;
+        }
+
+        .footer-container ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-container ul li {
+            margin-bottom: 5px;
+        }
+
+        .footer-container ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-container ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Subcategories Styles */
+        .subcategories {
+            display: none; /* Initially hidden */
+            list-style: none;
+            padding: 0;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+            width: 200px;
+        }
+
+        .subcategories li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .subcategories li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .subcategories li:hover {
+            background-color: #eee;
+        }
+        .menu {
+            display: flex;
+            gap: 30px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .menu-item {
+            color: #333;
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .menu-item:hover {
+            color: red;
+            transform: scale(1.2);
+        }
+
+        .menu-item.active {
+            color: red;
+        }
+
+        .underline {
+            height: 2px;
+            background-color: red;
+            margin-top: 5px;
+            width: 50px;
+            transition: width 0.3s ease;
+        }
+        
+
+       /* Mobile Styles */
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            /* Header Section */
+            .header-container {
+                flex-direction: column; /* Change to column for mobile */
+                justify-content: center;
+                align-items: center;
+                padding: 10px; /* Add some padding */
+                position: relative;
+            }
+
+            /* Website Name Section */
+            .website-name {
+                text-align: center;
+                font-size: 24px; /* Adjust font size for mobile */
+                padding: 10px 0;
+            }
+
+            /* Menu Toggle for Mobile */
+            .menu-container {
+                display: none; /* Hide menu by default */
+                position: absolute;
+                top: 50px; /* Positioning the menu below the header */
+                left: 0;
+                width: 100%;
+                background-color: #333; /* Background color for the menu */
+                color: white;
+                transition: transform 0.3s ease;
+            }
+
+            /* Show the menu when active */
+            .menu-container.open {
+                display: block;
+                transform: translateX(0); /* Slide-in animation */
+            }
+
+            /* Navigation links for mobile */
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 0;
+                margin: 0;
+                width: 100%;
+            }
+
+            .nav-links li {
+                margin: 10px 0; /* Add space between menu items */
+                text-align: center;
+            }
+
+            .nav-links li a {
+                color: white;
+                text-decoration: none;
+                font-size: 18px; /* Adjust font size for better readability on mobile */
+            }
+
+            /* Subcategory Box */
+            .sub-category-container {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                max-height: 200px;
+                overflow-y: auto;
+                position: relative;
+                border-radius: 10px; /* Slightly rounded for mobile */
+            }
+
+            .sub-category-container ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .sub-category-container li {
+                padding: 8px;
+            }
+
+            .sub-category-container li a {
+                color: white;
+                text-decoration: none;
+                font-size: 16px;
+            }
+
+            .sub-category-container li:hover {
+                background-color: #444;
+            }
+
+            /* Hide the subcategory box by default for mobile until clicked */
+            #subCategoryList {
+                display: none;
+            }
+
+            /* Product Grid Layout */
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr); /* Two images per row on mobile */
+            }
+        }
+
+                /* Adjust the product grid layout for mobile view */
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr); /* Two images in one row on mobile */
+            }
+        }
+        
+
+
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="header-container">
+            <h1 class="website-name">Sparten Hub</h1>
+            <input type="text" placeholder="Search..." class="search-bar">
+            <div class="auth-buttons">
+                <button class="login-btn">Login</button>
+                <button class="signup-btn">Signup</button>
+            </div>
+        </div>
+    
+        <div class="navbar">
+            <div class="browse-categories" id="browseCategories">
+                <span class="category-title zoom-effect">Browse Categories</span>
+                <span class="three-dots">...</span>
+                <ul class="sub-category" id="subCategoryList">
+                    <li><a href="beauty.html">Beauty and Personal Care</a></li>
+                    <li><a href="makeup">Makeup</a></li>
+                    <li><a href="skin">Skin Care</a></li>
+                    <li><a href="kitchen">Home and Kitchen</a></li>
+                    <li><a href="health">Health and Medical Care</a></li>
+                    <li><a href="pet">Pet Food</a></li>
+                </ul>
+            </div>
+    
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">All Products</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    
+
+    <main>
+        <!-- First Image and Oxo Images side by side -->
+        <div class="image-row-container">
+            <!-- First Product: e.l.f. Suntouchable -->
+            <div class="first-image-container">
+                <img src="https://www.elfcosmetics.com/dw/image/v2/BBXC_PRD/on/demandware.static/-/Sites-elf-master/default/dw8d284e1e/2024/SuntouchableUpdatedAssets_US/WhoaGlow/57278_CLOSED_R.jpg?sfrm=png&sw=700&q=90" 
+                     alt="e.l.f. Suntouchable" 
+                     class="first-image">
+                <div class="product-info">
+                    <h2 style="font-size: 24px; margin: 0;">e.l.f. Suntouchable</h2>
+                    <p style="margin: 5px 0;">Glowy face sunscreen & makeup primer hybrid</p>
+                    <p class="price" style="font-weight: bold; font-size: 20px; color: #ffcc00; margin: 5px 0;">$17.50</p>
+                </div>
+            </div>
+    
+            <!-- OXO Products: Two Images Stacked -->
+            <div class="oxo-product-container">
+                <div class="oxo-image">
+                    <img src="https://petco.pk/wp-content/uploads/2023/03/Big-Paw-Dog-Food-by-Petco-Pakistan-450x450.jpg" alt="Pet Food" class="oxo-top">
+                    <div class="product-info">
+                        <p class="product-title">Purina</p>
+                        <p class="product-title">Pet Food</p>
+                        <a href="https://www.spartenhub.com/category/pet-supplies" class="view-more">View More</a>
+                    </div>
+                </div>
+                <div class="oxo-image">
+                    <img src="https://images.containerstore.com/catalogimages/425047/10086171-OXO-Steel-Grater-VEN1.jpg?width=600&height=600&align=center" alt="Steel Grater" class="oxo-bottom">
+                    <div class="product-info">
+                        <p class="product-title">OXO</p>
+                        <p class="product-title">Steel Grater</p>
+                        <a href="https://www.spartenhub.com/category/home-kitchen" class="view-more">View More</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Last Product: AC Collection Calming Foam Cleanser by Corex -->
+            <div class="last-product-container">
+                <img src="https://www.wishlisted.com/app/uploads/2022/09/Screen-Shot-2022-09-18-at-11.30.44-PM-374x600.png" alt="AC Collection Calming Foam Cleanser" class="last-product">
+                <div class="product-info">
+                
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="category">
+                <img src="https://fusionfindllc.com/wp-content/uploads/2024/03/OXOBundle9-01.jpg" alt="Kitchen">
+                <h3>Kitchen</h3>
+                <div class="subheadings">
+                    <a href="#">Pan & Pots</a>
+                    <a href="#">Cookware</a>
+                    <a href="#">Kitchen Utensils</a>
+                    <a href="#">Bakeware</a>
+                </div>
+            </div>
+            <div class="category">
+                <img src="https://www.skincenterofsouthmiami.com/wp-content/uploads/2018/06/Skin-Center-of-South-Miami-Facials-and-Skin-Care.jpg" alt="Beauty">
+                <h3>Beauty</h3>
+                <div class="subheadings">
+                    <a href="#">Face Mask</a>
+                    <a href="#">Pimple Patch</a>
+                    <a href="#">Skin Care</a>
+                    <a href="#">Cleansing</a>
+                </div>
+            </div>
+            <div class="category">
+                <img src="https://www.myvitaminstore.pk/cdn/shop/files/fluffy-cat-food-be-happy-pets-318320.jpg?v=1713779356" alt="Pets Food">
+                <h3>Pets Food</h3>
+                <div class="subheadings">
+                    <a href="#">Dental Chews</a>
+                    <a href="#">Dog Food</a>
+                    <a href="#">Cat Food</a>
+                    <a href="#">Supplements</a>
+                </div>
+            </div>
+            <div class="category">
+                <img src="https://lovegrowswild.com/wp-content/uploads/2019/04/Must-Have-Makeup-My-Daily-Makeup-Routine-2.jpg" alt="Make Up Kit">
+                <h3>Make Up Kit</h3>
+                <div class="subheadings">
+                    <a href="#">Face</a>
+                    <a href="#">Lips</a>
+                    <a href="#">Fragrance</a>
+                    <a href="#">Eyes</a>
+                </div>
+            </div>
+            <div class="category">
+                <img src="https://media.istockphoto.com/id/1248454290/photo/accessories-for-cat-and-dog-on-blue-background-pet-care-and-training-concept-flat-lay-top-view.jpg?s=612x612&w=0&k=20&c=rA18Zf1SiyFh9yrFpe0M5HeaoAK5KG_X2vvnUAHSa1s=" alt="Pet Accessories">
+                <h3>Pet Accessories</h3>
+                <div class="subheadings">
+                    <a href="#">Cleaning Brush</a>
+                    <a href="#">Ball Toys</a>
+                    <a href="#">Food Bowls</a>
+                    <a href="#">Spoon Feeder</a>
+                </div>
+            </div>
+            <div class="category">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/0bcf0a0bbf0547cdb878dbe757838cdc.jpg_720x720q80.jpg" alt="Storage Bottles">
+                <h3>Storage Bottles</h3>
+                <div class="subheadings">
+                    <a href="#">Water Bottles</a>
+                    <a href="#">Sports Bottles</a>
+                    <a href="#">Jars Bottles</a>
+                    <a href="#">Gym Bottles</a>
+                </div>
+            </div>
+            <div class="category">
+                <img src="https://majesticchef.pk/cdn/shop/files/1_4_43a7de84-8059-4dcd-90f1-8d3a6d602712.jpg?v=1714045430" alt="Kitchen Gadgets">
+                <h3>Kitchen Gadgets</h3>
+                <div class="subheadings">
+                    <a href="#">Food Chopper</a>
+                    <a href="#">Humidifier</a>
+                    <a href="#">Salad Cutter</a>
+                    <a href="#">Blender Juicer</a>
+                </div>
+            </div>
+            <div class="category">
+                <img src="https://www.ratdin.pk/cdn/shop/files/image_2_4696d050-8bad-4c02-ab19-62c5d2e200bf.jpg?v=1719775017" alt="Hair Tools">
+                <h3>Hair Tools</h3>
+                <div class="subheadings">
+                    <a href="#">Hair Dryer</a>
+                    <a href="#">Hair Removal</a>
+                    <a href="#">Hair Brush</a>
+                    <a href="#">Hair Curler</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="product-container">
+            <!-- First Row -->
+            <div class="product-row">
+              <div class="product">
+                <img src="https://fusionfindllc.com/wp-content/uploads/2024/03/Product01-01-225x300.webp" alt="Product 1">
+                <div class="product-info">
+                  
+                </div>
+                <div class="product-details">
+                  <p><strong>Rated:</strong> ⭐⭐⭐⭐⭐</p>
+                  <p><strong>Highlights:</strong> Non-heavy, double-functioning eye cream.</p>
+                  <button class="add-to-cart">Add to Cart</button>
+                </div>
+              </div>
+              <div class="product">
+                <img src="https://fusionfindllc.com/wp-content/uploads/2024/03/Product02-01-225x300.webp" alt="Product 2">
+                <div class="product-info">
+                  
+                </div>
+                <div class="product-details">
+                  <p><strong>Rated:</strong> ⭐⭐⭐⭐⭐</p>
+                  <p><strong>Highlights:</strong> Visibly clearer skin & never stripped!</p>
+                  <button class="add-to-cart">Add to Cart</button>
+                </div>
+              </div>
+              <div class="product">
+                <img src="https://fusionfindllc.com/wp-content/uploads/2024/03/Product03-01-225x300.webp" alt="Product 3">
+                <div class="product-info">
+                  
+                </div>
+                <div class="product-details">
+                  <p><strong>Rated:</strong> ⭐⭐⭐⭐⭐</p>
+                  <p><strong>Highlights:</strong> Cleanse the skin deeply without causing irritation.</p>
+                  <button class="add-to-cart">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+        
+            <!-- Second Row -->
+            <div class="product-row">
+              <div class="product">
+                <img src="https://www.elfcosmetics.com/dw/image/v2/BBXC_PRD/on/demandware.static/-/Sites-elf-master/default/dw8d284e1e/2024/SuntouchableUpdatedAssets_US/WhoaGlow/57278_CLOSED_R.jpg?sfrm=png&sw=700&q=90" alt="Product 4">
+                <div class="product-info">
+                 
+                </div>
+                <div class="product-details">
+                  <p><strong>Rated:</strong> ⭐⭐⭐⭐⭐</p>
+                  <p><strong>Highlights:</strong> Glowy face sunscreen & makeup primer.</p>
+                  <button class="add-to-cart">Add to Cart</button>
+                </div>
+              </div>
+              <div class="product">
+                <img src="https://static.wixstatic.com/media/28bc1a_1aacfb3890d84314b338f3fab0a92fbb~mv2.jpg/v1/fill/w_480,h_480,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/28bc1a_1aacfb3890d84314b338f3fab0a92fbb~mv2.jpg" alt="Product 5">
+                <div class="product-info">
+                  
+                </div>
+                <div class="product-details">
+                  <p><strong>Rated:</strong> ⭐⭐⭐⭐⭐</p>
+                  <p><strong>Highlights:</strong> Hydrating cleansing balm to remove makeup.</p>
+                  <button class="add-to-cart">Add to Cart</button>
+                </div>
+              </div>
+              <div class="product">
+                <img src="https://www.colorshow.pk/cdn/shop/products/ELF-828469_2_1024x1024.jpg?v=1680778464" alt="Product 6">
+                <div class="product-info">
+                  
+                </div>
+                <div class="product-details">
+                  <p><strong>Rated:</strong> ⭐⭐⭐⭐⭐</p>
+                  <p><strong>Highlights:</strong> Gel face primer for long-lasting makeup.</p>
+                  <button class="add-to-cart">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+
+        <div class="carousel">
+        
+            <!-- First Slide (Pet Supplies) -->
+            <div class="carousel-item active">
+                <div class="dark-overlay"></div>
+                <img src="https://www.purina-aoa.com/sites/default/files/styles/ttt_image_510/public/2021-08/OUR%20BRANDS%20Cat%20and%20Dog%20Mobile_0.jpg?itok=jV7VXJXw" alt="Pet Supplies">
+                <div class="carousel-caption">
+                    <h2 class="brand-name">Pet Supplies</h2>
+                    <h1 class="heading">Your Pet, Our Passion</h1>
+                    <h3 class="subheading">One Website for All Your Pet Needs</h3>
+                    <p class="text-content">Whether you have a dog, cat or both, our experts are here with all the information and tips you need. We use our Purina experts to cover topics like dog and cat health, nutrition, behavior, training and more.</p>
+                    <button class="view-more-btn">View More</button>
+                </div>
+            </div>
+    
+            <!-- Second Slide (Home and Kitchen > OXO Brand) -->
+            <div class="carousel-item">
+                <div class="dark-overlay"></div>
+                <img src="https://assets.architecturaldigest.in/photos/6045cf4607b8c2a9c90a31cc/16:9/w_2560%2Cc_limit/modular-kitchen-accessories-design-interiors.jpg" alt="Home and Kitchen">
+                <div class="carousel-caption">
+                    <h2 class="brand-name">Home and Kitchen &gt; OXO Brand</h2>
+                    <h1 class="heading">We Believe in a Better Way</h1>
+                    <h3 class="subheading">Innovative Kitchen Solutions</h3>
+                    <p class="text-content">From cooking and baking to brewing and entertaining to cleaning and organizing, to everyday adventures with little ones.
+                        We design tools that fit comfortably in your hand and in your life.</p>
+                    <button class="view-more-btn">View More</button>
+                </div>
+            </div>
+    
+            <!-- Third Slide (Wellness Beauty > ELF Brand) -->
+            <div class="carousel-item">
+                <div class="dark-overlay"></div>
+                <img src="https://www.biohense.com/wp-content/uploads/2022/07/cosmetica-bellezza-benessere-olistico-psicofisico-1100x660.png" alt="Wellness Beauty">
+                <div class="carousel-caption">
+                    <h2 class="brand-name">Wellness Beauty &gt; ELF Brand</h2>
+                    <h1 class="heading">Find a Class for Your Skin</h1>
+                    <h3 class="subheading">Achieve Your Beauty Goals</h3>
+                    <p class="text-content">welcome to the beauty verse.
+                        Get instant access right here and wow. Where everyone can own their beauty, without compromise. It's giving major pout clout.</p>
+                    <p class="text-content">    </p>
+                    <button class="view-more-btn">View More</button>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="dark-overlay"></div>
+                <img src="https://advertising.walmart.com/thunder/assets/media-service/wcnp-prod/images/aae49e3c-8d0f-4ae2-a5c1-0fd4c4708bdc/10e16214-c795-49fe-b392-5e5b507255f0.jpeg" alt="Pet Supplies">
+                <div class="carousel-caption">
+                    <h1 class="heading">Your Pet, Our Passion</h1>
+                    <h3 class="subheading">One Website for All Your Pet Needs</h3>
+                    <p class="text-content">Why Your Dog’s Dental Health is Important healthy teeth, its perfect time to establish with us! Happy Dog! Happy Dental health mouth.
+                        Find the Right Treat or Supplement for Your Pet's Needs.</p>
+                   
+                    <button class="view-more-btn">View More</button>
+                </div>
+            </div>
+            
+    
+            <!-- Carousel Navigation -->
+            <div class="carousel-control-prev">
+                <span class="carousel-control-prev-icon">&lt;</span>
+            </div>
+            <div class="carousel-control-next">
+                <span class="carousel-control-next-icon">&gt;</span>
+            </div>
+        </div>
+    
+        <!-- Include your script.js -->
+        <!-- Top Red Bar with Icons and Text -->
+        <div class="top-bar">
+            <div class="icon-box" id="free-shipping">
+                <div class="icon">🚚</div>
+                <p>FREE SHIPPING</p>
+                <span>Avail Facility on Bundle Item</span>
+            </div>
+            <div class="icon-box" id="returns">
+                <div class="icon">🔄</div>
+                <p>RETURNS & REFUNDS</p>
+                <span>Facility Available as per Policy</span>
+            </div>
+            <div class="icon-box" id="support">
+                <div class="icon">📞</div>
+                <p>SUPPORT 24/7</p>
+                <span>Top Priority Customer Service</span>
+            </div>
+            <div class="icon-box" id="safe">
+                <div class="icon">✔</div>
+                <p>100% SAFE & SECURE</p>
+                <span>Top Priority for Safe Delivery</span>
+            </div>
+        </div>
+
+        <!-- Subscribe Form -->
+        <div class="subscribe-box" id="subscribe-box">
+            <h2>Subscribe for <span>Newsletter</span></h2>
+            <p>Order now! your Favorite items</p>
+            <h3>Sign Up and Save</h3>
+            <form>
+                <input type="text" placeholder="First Name">
+                <input type="text" placeholder="Last Name">
+                <input type="email" placeholder="Email Address">
+                <button type="submit" id="sign-up">SIGN UP</button>
+            </form>
+        </div>
+       
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="menu">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">All Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="categories">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="beauty.html">Beauty and Personal Care</a></li>
+                    <li><a href="makeup">Makeup</a></li>
+                    <li><a href="skin">Skin Care</a></li>
+                    <li><a href="kitchen">Home and Kitchen</a></li>
+                    <li><a href="health">Health and Medical Care</a></li>
+                    <li><a href="pet">Pet Food</a></li>
+                </ul>
+            </div>
+            <div class="contact">
+                <h3>Contact Us</h3>
+                <p>EIN #: 99-3895752</p>
+                <p>Address: 30 N Gould St Off 44157 Sheridan WY</p>
+                <p>Postal Code: 82801</p>
+                <p>US Number: +1 7372762860</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Function to toggle the subcategory box visibility when "Browse Categories" is clicked
+        function toggleCategories() {
+            var subCategoryList = document.getElementById('subCategoryList');
+            
+            if (subCategoryList.style.display === 'none' || subCategoryList.style.display === '') {
+                subCategoryList.style.display = 'block';  // Show the subcategory box
+            } else {
+                subCategoryList.style.display = 'none';   // Hide the subcategory box
+            }
+        }
+        
+        // Function to close the subcategory box if the user clicks outside
+        document.addEventListener('DOMContentLoaded', function() {
+            const browseCategories = document.getElementById('browseCategories');
+            const subCategoryList = document.getElementById('subCategoryList');
+            
+            // Show subcategory box when "Browse Categories" is clicked
+            browseCategories.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent the click from propagating and closing the box
+                toggleCategories(); // Toggle the subcategories visibility
+            });
+            
+            // Close subcategory box if clicking outside the browseCategories container
+            document.addEventListener('click', function(event) {
+                if (!browseCategories.contains(event.target) && !subCategoryList.contains(event.target)) {
+                    subCategoryList.style.display = 'none'; // Hide the subcategory box
+                }
+            });
+        });
+
+    </script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const products = document.querySelectorAll('.product');
+        
+            products.forEach(product => {
+            product.addEventListener('mouseover', function() {
+                const details = product.querySelector('.product-details');
+                details.style.display = 'block';
+            });
+        
+            product.addEventListener('mouseout', function() {
+                const details = product.querySelector('.product-details');
+                details.style.display = 'none';
+            });
+            });
+        });
+      
+    </script>
+    
+    
+    
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best of the Week</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .menu {
+            display: flex;
+            gap: 30px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .menu-item {
+            color: #333;
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .menu-item:hover {
+            color: red;
+            transform: scale(1.2);
+        }
+
+        .menu-item.active {
+            color: red;
+        }
+
+        .underline {
+            height: 2px;
+            background-color: red;
+            margin-top: 5px;
+            width: 50px;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <div class="menu">
+            <div class="menu-item active">BEST OF THE WEEK</div>
+            <div class="menu-item">WELLNESS BEAUTY</div>
+            <div class="menu-item">E.L.F COSMETICS</div>
+            <div class="menu-item">COSRX</div>
+            <div class="menu-item">MIGHTY PATCH</div>
+        </div>
+        <div class="underline"></div>
+    </div>
+
+</body>
+</html>

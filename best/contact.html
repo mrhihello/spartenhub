@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparten Hub</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .category {
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #fff;
+            transition: transform 0.3s ease;
+        }
+        .category:hover {
+            transform: scale(1.05);
+        }
+        .category img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .category:hover img {
+            transform: scale(1.1);
+        }
+        .category h3 {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 10px;
+            font-size: 18px;
+            text-transform: uppercase;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .category h3:hover {
+            transform: scale(1.2);
+            color: #ff6600;
+        }
+        .subheadings {
+            padding: 10px;
+            text-align: left;
+        }
+        .subheadings a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            margin: 5px 0;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .subheadings a:hover {
+            transform: scale(1.1);
+            color: #ff6600;
+        }
+
+        /* Navigation Zoom Effect */
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease; /* Smooth transition for zoom effect */
+        }
+
+        .nav-links a:hover {
+            transform: scale(1.1); /* Magic zoom effect on hover */
+        }
+
+        /* Header Styles */
+        .header-container {
+            display: flex;
+            align-items: center;
+            background-color: #101828;
+            padding: 15px;
+            color: white;
+        }
+
+        .website-name {
+            margin: 0;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .website-name:hover {
+            transform: scale(1.1); /* Zoom effect on website name */
+        }
+
+        .search-bar {
+            margin-left: 20px;
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+        }
+
+        .auth-buttons {
+            margin-left: auto;
+        }
+
+        .login-btn,
+        .signup-btn {
+            margin-left: 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #444CE7;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            padding: 10px 20px;
+        }
+
+        .browse-categories {
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .three-dots {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            margin: 0;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .faq, .contact-form {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .faq h2, .contact-form h2 {
+            font-size: 24px;
+        }
+
+        .collapsible {
+            background-color: #f1f1f1;
+            color: #444;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .collapsible:after {
+            content: '\25BC'; /* down arrow */
+            font-size: 12px;
+            color: black;
+        }
+
+        .collapsible.active:after {
+            content: '\25B2'; /* up arrow */
+        }
+
+        .content {
+            padding: 10px;
+            display: none;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-form label {
+            margin-top: 10px;
+        }
+
+        .contact-form input, 
+        .contact-form textarea {
+            padding: 10px;
+            margin-top: 5px;
+            width: 40%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.1);
+        }
+        /* Footer Styles */
+        footer {
+            background-color: #101828;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .menu,
+        .categories,
+        .contact {
+            width: 30%;
+        }
+
+        .menu h3,
+        .categories h3,
+        .contact h3 {
+            margin: 0 0 10px 0;
+        }
+
+        .footer-container ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-container ul li {
+            margin-bottom: 5px;
+        }
+
+        .footer-container ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-container ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Subcategories Styles */
+        .subcategories {
+            display: none; /* Initially hidden */
+            list-style: none;
+            padding: 0;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+            width: 200px;
+        }
+
+        .subcategories li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .subcategories li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .subcategories li:hover {
+            background-color: #eee;
+        }
+        
+
+       /* Mobile Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 10px; /* Add some padding */
+            }
+
+            .website-name {
+                flex-grow: 1; /* Center the website name */
+                text-align: center;
+                font-size: 20px; /* Adjust font size for mobile */
+            }
+
+            .nav-links {
+                flex-direction: column; /* Stack nav links vertically */
+                align-items: flex-start; /* Align links to the left */
+            }
+
+            .nav-links li {
+                margin: 5px 0; /* Space between links */
+            }
+
+            .footer-container {
+                display: flex;
+                flex-direction: column; /* Stack footer sections */
+                align-items: flex-start; /* Align footer items to the left */
+            }
+
+            .footer-container div {
+                margin-bottom: 20px; /* Space between footer sections */
+            }
+
+            /* Adjust the subcategory box for mobile */
+            .sub-category-container {
+                width: 100%; /* Full width for mobile */
+                height: auto; /* Adjust height to content */
+                max-height: 200px; /* Limit height to 200px, you can adjust as needed */
+                overflow-y: auto; /* Enable scrolling if the content overflows */
+                position: relative; /* Stay within its parent container */
+                top: 0; /* Keep it right below the Browse Categories */
+                left: 0;
+                padding: 10px;
+                border-radius: 10px; /* Slightly rounded for mobile */
+            }
+
+            .sub-category-container ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .sub-category-container li {
+                padding: 8px; /* Adjust padding to look good on mobile */
+            }
+
+            .sub-category-container li a {
+                color: white;
+                text-decoration: none;
+                font-size: 16px; /* Adjust font size for better readability on mobile */
+            }
+
+            .sub-category-container li:hover {
+                background-color: #444;
+            }
+
+            /* Hide the subcategory box by default for mobile until clicked */
+            #subCategoryList {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1 class="website-name">Sparten Hub</h1>
+            <input type="text" placeholder="Search..." class="search-bar">
+            <div class="auth-buttons">
+                <button class="login-btn">Login</button>
+                <button class="signup-btn">Signup</button>
+            </div>
+        </div>
+    
+        <div class="navbar">
+            <div class="browse-categories" id="browseCategories">
+                <span class="category-title zoom-effect">Browse Categories</span>
+                <span class="three-dots">...</span>
+                <ul class="sub-category" id="subCategoryList">
+                    <li><a href="beauty.html">Beauty and Personal Care</a></li>
+                    <li><a href="makeup">Makeup</a></li>
+                    <li><a href="skin">Skin Care</a></li>
+                    <li><a href="kitchen">Home and Kitchen</a></li>
+                    <li><a href="health">Health and Medical Care</a></li>
+                    <li><a href="pet">Pet Food</a></li>
+                </ul>
+            </div>
+    
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">All Products</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+<div class="container">
+    <div class="contact-form">
+        <h2>CONTACT US FOR ANY QUESTIONS</h2>
+        <form action="#" method="post">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name">
+
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email">
+
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="phone">
+
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company">
+
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="5"></textarea>
+
+            <button type="submit" class="submit-btn">Submitter</button>
+        </form>
+    </div>
+
+    <div class="faq">
+        <h2>FREQUENTLY ASKED QUESTIONS</h2>
+        <button class="collapsible">Will I receive the same product that I see in the picture?</button>
+        <div class="content">
+            <p>Yes, we make every effort to ensure that the product you receive matches the product displayed in the picture. However, there can be slight differences due to lighting conditions or the quality of your screen display. We encourage you to check product descriptions for more details.</p>
+            <p>Moreover, all our products go through quality checks to ensure that you are satisfied with what you receive. If you are unhappy for any reason, our return policy allows you to easily return or exchange the item within 30 days.</p>
+        </div>
+
+        <button class="collapsible">Where can I view my sales receipt?</button>
+        <div class="content">
+            <p>Your sales receipt can be accessed in two main ways: it is sent directly to your email upon completion of the purchase, and you can also access it from your account's "Order History" section. If you don't receive the email, be sure to check your spam or junk folders.</p>
+            <p>If you still can't find your receipt, our customer service team will be happy to assist you in retrieving a copy of the receipt for your records.</p>
+        </div>
+
+        <button class="collapsible">How can I return an item?</button>
+        <div class="content">
+            <p>We aim to make the return process as easy as possible. You can initiate a return by logging into your account, visiting the "Order History" section, and selecting the order you want to return. From there, follow the provided instructions to start the return process.</p>
+            <p>Please note that items must be returned in their original condition and packaging. Once we receive your return, we will process the refund within 7-10 business days. If you need further assistance, feel free to contact our support team.</p>
+        </div>
+
+        <button class="collapsible">Will you restock items indicated as "out of stock"?</button>
+        <div class="content">
+            <p>We try to restock popular items as soon as possible. However, restocking depends on availability from our suppliers and overall demand for the product. If an item you want is out of stock, we recommend signing up for restock notifications on the product page.</p>
+            <p>In some cases, certain items may be discontinued, in which case they will no longer be available for purchase. If you have any questions about restocks, don't hesitate to contact us.</p>
+        </div>
+
+        <button class="collapsible">Where can I ship my order?</button>
+        <div class="content">
+            <p>We offer shipping worldwide. During checkout, you will be able to select your shipping region and see the available shipping methods. Depending on your location, we offer a range of shipping options, from standard to expedited delivery.</p>
+            <p>We partner with reliable couriers to ensure timely delivery of your order. For more detailed information on our shipping policies, please refer to the Shipping Information page on our website.</p>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="footer-container">
+        <div class="menu">
+            <h3>Menu</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">All Products</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="categories">
+            <h3>Categories</h3>
+            <ul>
+                <li><a href="beauty.html">Beauty and Personal Care</a></li>
+                <li><a href="makeup">Makeup</a></li>
+                <li><a href="skin">Skin Care</a></li>
+                <li><a href="kitchen">Home and Kitchen</a></li>
+                <li><a href="health">Health and Medical Care</a></li>
+                <li><a href="pet">Pet Food</a></li>
+            </ul>
+        </div>
+        <div class="contact">
+            <h3>Contact Us</h3>
+            <p>EIN #: 99-3895752</p>
+            <p>Address: 30 N Gould St Off 44157 Sheridan WY</p>
+            <p>Postal Code: 82801</p>
+            <p>US Number: +1 7372762860</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const collapsibles = document.querySelectorAll('.collapsible');
+
+    collapsibles.forEach(collapsible => {
+        collapsible.addEventListener('click', function() {
+            // Close all other collapsible content
+            collapsibles.forEach(other => {
+                if (other !== this) {
+                    other.classList.remove('active');
+                    other.nextElementSibling.style.display = 'none';
+                }
+            });
+
+            // Toggle the clicked collapsible
+            this.classList.toggle('active');
+            const content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    });
+</script>
+<script>
+    // Function to toggle the subcategories visibility
+    function toggleCategories() {
+        var subcategories = document.getElementById('subCategoryList');
+        if (subcategories.style.display === 'none' || subcategories.style.display === '') {
+            subcategories.style.display = 'block';  // Show the subcategories
+        } else {
+            subcategories.style.display = 'none';   // Hide the subcategories
+        }
+    }
+
+    // Function to toggle the visibility of individual subcategories
+    function toggleSubcategories(category) {
+        var subcategories = document.querySelectorAll('.sub-category');
+        
+        // Hide all subcategories initially
+        subcategories.forEach(function(sub) {
+            if (sub.id !== category) {
+                sub.style.display = 'none';
+            }
+        });
+
+        // Toggle the clicked subcategory
+        var selectedSub = document.getElementById(category);
+        if (selectedSub.style.display === 'none' || selectedSub.style.display === '') {
+            selectedSub.style.display = 'block'; // Show the subcategory
+        } else {
+            selectedSub.style.display = 'none'; // Hide the subcategory
+        }
+    }
+
+    // Function to open the sidebar
+    function openSidebar() {
+        document.getElementById("mySidebar").classList.add("open");
+        document.getElementById("overlay").style.display = "block"; // Show the overlay
+    }
+
+    // Function to close the sidebar
+    function closeSidebar() {
+        document.getElementById("mySidebar").classList.remove("open");
+        document.getElementById("overlay").style.display = "none"; // Hide the overlay
+    }
+
+    // Show subcategories on click (if you want to allow clicking as well)
+    document.addEventListener('DOMContentLoaded', function() {
+        const browseCategories = document.getElementById('browseCategories');
+        const subCategoryList = document.getElementById('subCategoryList');
+
+        browseCategories.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent click event from bubbling up
+            toggleCategories(); // Toggle the subcategories
+        });
+
+        // Close subcategories when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!browseCategories.contains(event.target)) {
+                subCategoryList.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
